@@ -23,7 +23,10 @@ export const PhotographerDashboard: React.FC<PhotographerDashboardProps> = ({ ph
 
   // Simulated Event ID - Persisted via state so it doesn't change on re-renders
   const [eventId] = useState(() => "evt_" + Math.random().toString(36).substr(2, 5).toUpperCase());
-  const eventLink = `https://eventlens.ai/e/${eventId}`; // Fake link for QR
+  
+  // Dynamic Link Generation
+  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://eventlens.ai';
+  const eventLink = `${origin}/?e=${eventId}`; 
 
   // Background Processor: Watches for unprocessed photos and generates AI-ready data
   useEffect(() => {
@@ -201,6 +204,7 @@ export const PhotographerDashboard: React.FC<PhotographerDashboardProps> = ({ ph
             <div>
                 <h3 className="text-xl font-semibold text-white">Event Ready!</h3>
                 <p className="text-indigo-200">Share this code with guests to let them find their photos instantly.</p>
+                <p className="text-xs text-indigo-400 mt-1 font-mono break-all">{eventLink}</p>
             </div>
             
             <div className="flex flex-col sm:flex-row gap-3">

@@ -9,10 +9,8 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [react()],
     define: {
-      // Vital: Maps process.env.API_KEY in code to the actual environment variable during build
-      'process.env.API_KEY': JSON.stringify(env.API_KEY),
-      // Prevents "process is not defined" errors in other libraries
-      'process.env': JSON.stringify(env)
+      // Vital: Maps process.env.API_KEY to Vercel's system env var or local .env
+      'process.env.API_KEY': JSON.stringify(process.env.API_KEY || env.API_KEY),
     },
     build: {
       outDir: 'dist',
