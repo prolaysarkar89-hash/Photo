@@ -1,0 +1,7 @@
+{
+  "name": "EventLens AI final",
+  "description": "Smart event photo distribution using AI face matching. Photographers upload albums, and clients find their photos instantly using a selfie.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
